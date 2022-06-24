@@ -1,0 +1,42 @@
+﻿// This file is used by Code Analysis to maintain SuppressMessage
+// attributes that are applied to this project.
+// Project-level suppressions either have no target or are given
+// a specific target and scoped to a namespace, type, member, etc.
+
+using System.Diagnostics.CodeAnalysis;
+
+[assembly: SuppressMessage("Performance", "CA1806:Methodenergebnisse nicht ignorieren", Justification = "<Ausstehend>", Scope = "member", Target = "~M:PlaylistWPF.GeneratePlaylists.Initial_DoWork(System.Object,System.ComponentModel.DoWorkEventArgs)")]
+[assembly: SuppressMessage("Style", "IDE1006:Benennungsstile", Justification = "<Ausstehend>", Scope = "member", Target = "~M:PlaylistWPF.Gelegenheit.btnSave_Click(System.Object,System.Windows.RoutedEventArgs)")]
+[assembly: SuppressMessage("Style", "IDE1006:Benennungsstile", Justification = "<Ausstehend>", Scope = "member", Target = "~M:PlaylistWPF.Genres.btnsave_Click(System.Object,System.Windows.RoutedEventArgs)")]
+[assembly: SuppressMessage("Style", "IDE1006:Benennungsstile", Justification = "<Ausstehend>", Scope = "member", Target = "~M:PlaylistWPF.Genres.dataGrid1_CurrentCellChanged(System.Object,System.EventArgs)")]
+[assembly: SuppressMessage("Style", "IDE1006:Benennungsstile", Justification = "<Ausstehend>", Scope = "member", Target = "~M:PlaylistWPF.MainWindow.btnAdd_Click(System.Object,System.Windows.RoutedEventArgs)")]
+[assembly: SuppressMessage("Style", "IDE1006:Benennungsstile", Justification = "<Ausstehend>", Scope = "member", Target = "~M:PlaylistWPF.MainWindow.btnAddConditionGroup_Click(System.Object,System.Windows.RoutedEventArgs)")]
+[assembly: SuppressMessage("Style", "IDE1006:Benennungsstile", Justification = "<Ausstehend>", Scope = "member", Target = "~M:PlaylistWPF.MainWindow.btnAddField_Click(System.Object,System.Windows.RoutedEventArgs)")]
+[assembly: SuppressMessage("Style", "IDE1006:Benennungsstile", Justification = "<Ausstehend>", Scope = "member", Target = "~M:PlaylistWPF.MainWindow.btndelete_Click(System.Object,System.Windows.RoutedEventArgs)")]
+[assembly: SuppressMessage("Style", "IDE1006:Benennungsstile", Justification = "<Ausstehend>", Scope = "member", Target = "~M:PlaylistWPF.MainWindow.btnDeleteConditionGroup_Click(System.Object,System.Windows.RoutedEventArgs)")]
+[assembly: SuppressMessage("Style", "IDE1006:Benennungsstile", Justification = "<Ausstehend>", Scope = "member", Target = "~M:PlaylistWPF.MainWindow.btnDeleteField_Click(System.Object,System.Windows.RoutedEventArgs)")]
+[assembly: SuppressMessage("Style", "IDE1006:Benennungsstile", Justification = "<Ausstehend>", Scope = "member", Target = "~M:PlaylistWPF.MainWindow.btnEditConditionGroup_Click(System.Object,System.Windows.RoutedEventArgs)")]
+[assembly: SuppressMessage("Style", "IDE1006:Benennungsstile", Justification = "<Ausstehend>", Scope = "member", Target = "~M:PlaylistWPF.MainWindow.btnEditPlaylist_Click(System.Object,System.Windows.RoutedEventArgs)")]
+[assembly: SuppressMessage("Style", "IDE1006:Benennungsstile", Justification = "<Ausstehend>", Scope = "member", Target = "~M:PlaylistWPF.MainWindow.btnsituation_Click(System.Object,System.Windows.RoutedEventArgs)")]
+[assembly: SuppressMessage("Style", "IDE1006:Benennungsstile", Justification = "<Ausstehend>", Scope = "member", Target = "~M:PlaylistWPF.MainWindow.cbALLOperatoren_SelectionChanged(System.Object,System.Windows.Controls.SelectionChangedEventArgs)")]
+[assembly: SuppressMessage("Style", "IDE1006:Benennungsstile", Justification = "<Ausstehend>", Scope = "member", Target = "~M:PlaylistWPF.MainWindow.cbBewertungMine_SelectionChanged(System.Object,System.Windows.Controls.SelectionChangedEventArgs)")]
+[assembly: SuppressMessage("Style", "IDE1006:Benennungsstile", Justification = "<Ausstehend>", Scope = "member", Target = "~M:PlaylistWPF.MainWindow.cbConditionGroupOperator_SelectionChanged(System.Object,System.Windows.Controls.SelectionChangedEventArgs)")]
+[assembly: SuppressMessage("Style", "IDE1006:Benennungsstile", Justification = "<Ausstehend>", Scope = "member", Target = "~M:PlaylistWPF.MainWindow.cbPLSortOrder_SelectionChanged(System.Object,System.Windows.Controls.SelectionChangedEventArgs)")]
+[assembly: SuppressMessage("Style", "IDE1006:Benennungsstile", Justification = "<Ausstehend>", Scope = "member", Target = "~M:PlaylistWPF.MainWindow.lbConditionList_GotFocus(System.Object,System.Windows.RoutedEventArgs)")]
+[assembly: SuppressMessage("Style", "IDE1006:Benennungsstile", Justification = "<Ausstehend>", Scope = "member", Target = "~M:PlaylistWPF.MainWindow.lbConditionList_SelectionChanged(System.Object,System.Windows.Controls.SelectionChangedEventArgs)")]
+[assembly: SuppressMessage("Style", "IDE1006:Benennungsstile", Justification = "<Ausstehend>", Scope = "member", Target = "~M:PlaylistWPF.MainWindow.lbFelder_SelectionChanged(System.Object,System.Windows.Controls.SelectionChangedEventArgs)")]
+[assembly: SuppressMessage("Style", "IDE1006:Benennungsstile", Justification = "<Ausstehend>", Scope = "member", Target = "~M:PlaylistWPF.MainWindow.lbPlaylist_SelectionChanged(System.Object,System.Windows.Controls.SelectionChangedEventArgs)")]
+[assembly: SuppressMessage("Style", "IDE1006:Benennungsstile", Justification = "<Ausstehend>", Scope = "member", Target = "~M:PlaylistWPF.MainWindow.tbFeld_TextChanged(System.Object,System.Windows.Controls.TextChangedEventArgs)")]
+[assembly: SuppressMessage("Style", "IDE1006:Benennungsstile", Justification = "<Ausstehend>", Scope = "member", Target = "~M:PlaylistWPF.Settings.btGenreSet_Click(System.Object,System.Windows.RoutedEventArgs)")]
+[assembly: SuppressMessage("Style", "IDE1006:Benennungsstile", Justification = "<Ausstehend>", Scope = "member", Target = "~M:PlaylistWPF.Settings.btnsave_Click(System.Object,System.Windows.RoutedEventArgs)")]
+[assembly: SuppressMessage("Style", "IDE1006:Benennungsstile", Justification = "<Ausstehend>", Scope = "member", Target = "~M:PlaylistWPF.Settings.btnsetsavepath_Click(System.Object,System.Windows.RoutedEventArgs)")]
+[assembly: SuppressMessage("Style", "IDE1006:Benennungsstile", Justification = "<Ausstehend>", Scope = "member", Target = "~M:PlaylistWPF.Settings.btnsetxml_Click(System.Object,System.Windows.RoutedEventArgs)")]
+[assembly: SuppressMessage("Style", "IDE1006:Benennungsstile", Justification = "<Ausstehend>", Scope = "member", Target = "~M:PlaylistWPF.Settings.btnstartdir_Click(System.Object,System.Windows.RoutedEventArgs)")]
+[assembly: SuppressMessage("Style", "IDE1006:Benennungsstile", Justification = "<Ausstehend>", Scope = "member", Target = "~M:PlaylistWPF.SettingsGenre.btnsave_Click(System.Object,System.Windows.RoutedEventArgs)")]
+[assembly: SuppressMessage("Style", "IDE1006:Benennungsstile", Justification = "<Ausstehend>", Scope = "member", Target = "~M:PlaylistWPF.SettingsGenre.dataGrid1_CurrentCellChanged(System.Object,System.EventArgs)")]
+[assembly: SuppressMessage("Style", "IDE1006:Benennungsstile", Justification = "<Ausstehend>", Scope = "member", Target = "~M:PlaylistWPF.SettingsGenre.dataGrid1_InitializingNewItem(System.Object,System.Windows.Controls.InitializingNewItemEventArgs)")]
+[assembly: SuppressMessage("Style", "IDE0066:Switch-Anweisung in Ausdruck konvertieren", Justification = "<Ausstehend>", Scope = "member", Target = "~M:PlaylistWPF.MainWindow.GetFieldOperatorsbyString(System.String)~PlaylistGenerator.FieldOperator")]
+[assembly: SuppressMessage("Style", "IDE0066:Switch-Anweisung in Ausdruck konvertieren", Justification = "<Ausstehend>", Scope = "member", Target = "~M:PlaylistWPF.MainWindow.GetGermanStringoperators(PlaylistGenerator.FieldOperator)~System.String")]
+[assembly: SuppressMessage("Style", "IDE0066:Switch-Anweisung in Ausdruck konvertieren", Justification = "<Ausstehend>", Scope = "member", Target = "~M:PlaylistWPF.MainWindow.GetSortOrderPlaylistSortOrder(System.String)~PlaylistGenerator.PlaylistSortOrder")]
+[assembly: SuppressMessage("Style", "IDE0066:Switch-Anweisung in Ausdruck konvertieren", Justification = "<Ausstehend>", Scope = "member", Target = "~M:PlaylistWPF.MainWindow.GetSortOrderString(PlaylistGenerator.PlaylistSortOrder)~System.String")]
+[assembly: SuppressMessage("Usage", "CA1816:Dispose-Methoden müssen SuppressFinalize aufrufen", Justification = "<Ausstehend>", Scope = "member", Target = "~M:PlaylistWPF.GeneratePlaylists.Dispose")]

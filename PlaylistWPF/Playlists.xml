@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfPlaylistClass xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <PlaylistClass>
+    <conditionGroupsNames>
+      <string>artist</string>
+    </conditionGroupsNames>
+    <Playlist>test</Playlist>
+    <Sort>Title</Sort>
+    <PlaylistConditionGroups>
+      <ConditionObjectGroup>
+        <Name>artist</Name>
+        <ConditionObjectList>
+          <ConditionObject>
+            <Feld>Artist</Feld>
+            <Wert>Amon, Herbert</Wert>
+            <Operator>Contains</Operator>
+          </ConditionObject>
+          <ConditionObject>
+            <Feld>Bewertung</Feld>
+            <Wert>60</Wert>
+            <Operator>Bigger</Operator>
+          </ConditionObject>
+        </ConditionObjectList>
+        <FieldNamesList>
+          <string>Artist</string>
+          <string>Bewertung</string>
+        </FieldNamesList>
+        <CombineOperator>And</CombineOperator>
+      </ConditionObjectGroup>
+    </PlaylistConditionGroups>
+    <GetConditionGroupNames>
+      <string>artist</string>
+    </GetConditionGroupNames>
+  </PlaylistClass>
+</ArrayOfPlaylistClass>
