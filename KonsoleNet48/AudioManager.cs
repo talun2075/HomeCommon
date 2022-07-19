@@ -10,7 +10,7 @@ namespace KonsoleNet48
     internal class AudioManager
     {
         private readonly CoreAudioDevice defaultPlaybackDevice;
-        private CoreAudioController cac;
+        private readonly CoreAudioController cac;
         private double currentvolume;
         private Boolean currentMuteState;
 
@@ -38,9 +38,5 @@ namespace KonsoleNet48
             if (changedArgs.Volume != currentvolume)
                 currentvolume = changedArgs.Volume;
         }
-        public async void Test()
-        {
-        }
-
     }
 }

@@ -74,7 +74,7 @@ namespace HomeLogging
             try
             {
                 String LogDevice = string.IsNullOrEmpty(_device) ? String.Empty : _device + ":";
-                if (ExceptionMes?.Message.StartsWith("Could not connect to device")) return;
+                if (ExceptionMes == null || ExceptionMes.Message.StartsWith("Could not connect to device")) return;
                 string error = LogDevice + Method;
                 NLogLogger.Error(ExceptionMes, error);
             }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Net;
+using System.Net.Http;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -21,6 +22,7 @@ namespace ExternalDevices
         private static MarantzInputs _selectedMarantzInputs;
         private static Boolean _PowerOn;
         private static String _volume;
+        private static HttpClient _httpClient;
         #endregion InternalVariables
         /// <summary>
         /// Initialisieren des Marantz mit IP
@@ -82,18 +84,18 @@ namespace ExternalDevices
         {
             try
             {
+                if(_httpClient == null)
+                {
+                    _httpClient = new HttpClient();
+                }
                 XmlDocument myXmlDocument = new();
                 //Load Async
-                WebRequest webRequest = WebRequest.Create(mUrl + mXMLPath);
-                WebResponse response = await webRequest.GetResponseAsync();
-                StreamReader reader = new(response.GetResponseStream());
-                string xmlfile = await reader.ReadToEndAsync();
-                if (response != null)
-                    response.Dispose();
-                if (reader != null)
-                    reader.Dispose();
+                HttpResponseMessage getResponse = await _httpClient.GetAsync(mUrl + mXMLPath);
+                var response = getResponse.Content.ReadAsStringAsync();
                 //end Async
-                myXmlDocument.LoadXml(xmlfile);
+                if(response == null || string.IsNullOrEmpty(response.Result)) return false;
+
+                myXmlDocument.LoadXml(response.Result);
                 //myXmlDocument.Load(mUrl + mXMLPath); //Load NOT LoadXml
                 XmlNode powerstateNode = myXmlDocument.SelectSingleNode("descendant::Power");
                 XmlNode inputFuncSelectNode = myXmlDocument.SelectSingleNode("descendant::InputFuncSelect");
@@ -129,25 +131,15 @@ namespace ExternalDevices
         /// <param name="inp"></param>
         private async static void MarantzInput(string inp)
         {
-            WebRequest webRequest = WebRequest.Create(mUrl + "/" + mInputPath);
-            webRequest.Method = "POST";
-            string postData = inp;
-            byte[] byteArray = Encoding.UTF8.GetBytes(postData);
-            // Set the ContentType property of the WebRequest.
-            webRequest.ContentType = "application/x-www-form-urlencoded";
-            // Set the ContentLength property of the WebRequest.
-            webRequest.ContentLength = byteArray.Length;
-            // Get the request stream.
-            Stream dataStream = await webRequest.GetRequestStreamAsync();
-            // Write the data to the request stream.
-            dataStream.Write(byteArray, 0, byteArray.Length);
-            // Close the Stream object.
-            dataStream.Close();
-            // Get the response.
-            WebResponse response = await webRequest.GetResponseAsync();
-            response?.Close();
-            response?.Dispose();
-            dataStream?.Dispose();
+            if(_httpClient == null)
+            {
+                _httpClient = new HttpClient();
+            }
+            byte[] byteArray = Encoding.UTF8.GetBytes(inp);
+            HttpContent httpContent = new ByteArrayContent(byteArray);
+            httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/x-www-form-urlencoded");
+            httpContent.Headers.ContentLength = byteArray.Length;
+            HttpResponseMessage getResponse = await _httpClient.PostAsync(mUrl + "/" + mInputPath, httpContent);
         }
         /// <summary>
         /// Lautstärke Setzen (Format "-30.0")
@@ -204,11 +196,15 @@ namespace ExternalDevices
                     case MarantzInputs.Film:
                         MarantzInput("cmd0=PutZone_InputFunction%2FBD&cmd1=aspMainZone_WebUpdateStatus%2F");
                         break;
-                    case MarantzInputs.PS3:
-                        MarantzInput("cmd0=PutZone_InputFunction%2FGAME&cmd1=aspMainZone_WebUpdateStatus%2F");
+                    case MarantzInputs.Wii:
+                        MarantzInput("cmd0=PutZone_InputFunction%2FDVD&cmd1=aspMainZone_WebUpdateStatus%2F");
                         break;
                     case MarantzInputs.TV:
+                    case MarantzInputs.PS4:
                         MarantzInput("cmd0=PutZone_InputFunction%2FTV&cmd1=aspMainZone_WebUpdateStatus%2F");
+                        break;
+                    case MarantzInputs.TUNER:
+                        MarantzInput("cmd0=PutZone_InputFunction%2FTUNER&cmd1=aspMainZone_WebUpdateStatus%2F");
                         break;
                 }
                 _selectedMarantzInputs = value;
@@ -223,7 +219,7 @@ namespace ExternalDevices
     {
         Sonos,
         Film,
-        PS3,
+        Wii,
         PS4,
         TV,
         TUNER,

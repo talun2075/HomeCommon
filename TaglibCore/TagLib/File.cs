@@ -428,7 +428,7 @@ namespace TagLib {
 				AccessMode.Closed : (file_stream.CanWrite) ?
 					AccessMode.Write : AccessMode.Read;}
 			set {
-				if (Mode == value || (Mode == AccessMode.Write
+				if (_mode == value || (Mode == AccessMode.Write
 					&& value == AccessMode.Read))
 					return;
 				
@@ -442,7 +442,7 @@ namespace TagLib {
 				else if (value == AccessMode.Write)
 					file_stream = file_abstraction.WriteStream;
 
-				Mode = value;
+				_mode = value;
 			}
 		}
 		
