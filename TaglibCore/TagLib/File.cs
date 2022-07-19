@@ -422,13 +422,13 @@ namespace TagLib {
 		///    cref="AccessMode.Write" /> to <see cref="AccessMode.Read"
 		///    /> which has no effect.
 		/// </remarks>
-		internal AccessMode _mode;
+		//internal AccessMode _mode;
 		public AccessMode Mode {
 			get {return (file_stream == null) ?
 				AccessMode.Closed : (file_stream.CanWrite) ?
 					AccessMode.Write : AccessMode.Read;}
 			set {
-				if (_mode == value || (Mode == AccessMode.Write
+				if (Mode == value || (Mode == AccessMode.Write
 					&& value == AccessMode.Read))
 					return;
 				
@@ -442,7 +442,7 @@ namespace TagLib {
 				else if (value == AccessMode.Write)
 					file_stream = file_abstraction.WriteStream;
 
-				_mode = value;
+				Mode = value;
 			}
 		}
 		
