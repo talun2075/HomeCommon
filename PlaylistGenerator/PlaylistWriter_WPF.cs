@@ -19,7 +19,7 @@ namespace PlaylistGenerator
         /// <param name="ChangeMusicPath">Wenn ein anderer Pfad für den Song in einer Playlist genommen werden soll 
         /// Folgender Aufbau: OldValue|NewValue </param>
         /// <param name="clearPlaylistPath">Soll der Playlistordner gelerrt werden?</param>
-        public Playlistwriter_WPF(List<String> music, string savepath, BackgroundWorker bw = null, int BWStartvalue = 0, String ChangeMusicPath = null, Boolean clearPlaylistPath = false, Boolean extractPictures= false, string picPath = "")
+        public Playlistwriter_WPF(List<String> music, string savepath, BackgroundWorker bw = null, int BWStartvalue = 0, String ChangeMusicPath = null, Boolean clearPlaylistPath = false, Boolean extractPictures = false, string picPath = "")
         {
             if (BWStartvalue > 80)
             {
@@ -66,12 +66,14 @@ namespace PlaylistGenerator
                             var tempfile = TagLib.File.Create(path);
                             var img = tempfile.Tag.Pictures[0].Data.Data;
                             var imgname = tempfile.Tag.Pictures[0].Data.Checksum;
-                            File.WriteAllBytes(picPath + imgname + ".png", img);
+                            var pathwithfile = picPath + imgname + ".png";
+                            if (!File.Exists(pathwithfile))
+                                File.WriteAllBytes(pathwithfile, img);
                         }
                     }
-                    catch(Exception ex)
+                    catch (Exception ex)
                     {
-                        bw.ReportProgress(reportvalue, path + " Exception:"+ex.Message);
+                        bw.ReportProgress(reportvalue, path + " Exception:" + ex.Message);
                     }
                     int playlistcounter = 0;
                     foreach (PlaylistClass playlist in Playlists.GetPlaylists)

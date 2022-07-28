@@ -3,16 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Settings" Height="531" Width="567" Loaded="Window_Loaded" WindowStartupLocation="CenterOwner" Icon="/music.ico">
     <Grid Margin="0,0,0,-6">
-        <Border BorderThickness="1" BorderBrush="Black" HorizontalAlignment="Left" Height="53" Margin="10,277,0,0" VerticalAlignment="Top" Width="562" RenderTransformOrigin="0.5,0.5">
-            <Border.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform AngleX="0.84"/>
-                    <RotateTransform/>
-                    <TranslateTransform X="0.528"/>
-                </TransformGroup>
-            </Border.RenderTransform>
-        </Border>
         <Label Content="Wiedergabenliste XML:" Height="28" HorizontalAlignment="Left" Margin="18,22,0,0" x:Name="label1" VerticalAlignment="Top" />
         <Label Content="Wiedergabelisten Speicher Ort:" Height="28" HorizontalAlignment="Left" Margin="18,56,0,0" x:Name="label2" VerticalAlignment="Top" />
         <Label Content="Musik Pfad:" Height="28" HorizontalAlignment="Left" Margin="18,90,0,0" x:Name="label3" VerticalAlignment="Top" />
@@ -30,7 +20,7 @@
         <Label Content="Neu:" Height="23" HorizontalAlignment="Left" Margin="93,220,0,0" x:Name="label6" VerticalAlignment="Top" Width="38" />
         <TextBox Height="23" HorizontalAlignment="Left" Margin="231,221,0,0" x:Name="tbCMPNew" VerticalAlignment="Top" Width="254" />
         <CheckBox x:Name="cpplaylistautoload" Content="Wiedergabelisten Automatisch laden" HorizontalAlignment="Left" Margin="18,366,0,0" VerticalAlignment="Top"/>
-        <CheckBox x:Name="cbpictureextract" Content="Bilder Extraieren" HorizontalAlignment="Left" Margin="25,298,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="cbpictureextract" Content="Bilder Extraieren" HorizontalAlignment="Left" Margin="18,298,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="tbpicturepath" HorizontalAlignment="Left" Margin="231,298,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="254"/>
         <CheckBox x:Name="cbPlaylistClearFolder" Content="Playlist Ordner vorher leeren" HorizontalAlignment="Left" Height="15" Margin="18,346,0,0" VerticalAlignment="Top" Width="265"/>
         <Label Content="Musik Index Update Url:" Height="28" HorizontalAlignment="Left" Margin="18,123,0,0" x:Name="label3_Copy" VerticalAlignment="Top" />

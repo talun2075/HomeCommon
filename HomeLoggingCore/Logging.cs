@@ -5,7 +5,7 @@ using NLog.Targets;
 using NLog.Config;
 namespace HomeLogging
 {
-    public class Logging
+    public class Logging : ILogging
     {
         private Logger NLogLogger = LogManager.GetCurrentClassLogger();
         /// <summary>

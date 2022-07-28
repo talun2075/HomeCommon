@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HomeLogging
 {
     /// <summary>
     /// LoggingWrapperConfigurations class.
     /// </summary>
-    public class LoggerWrapperConfig
+    public class LoggerWrapperConfig : ILoggerWrapperConfig
     {
         /// <summary>
         /// Path to Logfiles. If Empty it use the Fallback from the Loggingwrapper
