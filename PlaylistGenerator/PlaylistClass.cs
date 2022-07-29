@@ -38,7 +38,10 @@ namespace PlaylistGenerator
         /// Erlaubt: Titel, Artist, Random
         /// </summary>
         public PlaylistSortOrder Sort { get; set; }
-
+        /// <summary>
+        /// Maximale Anzahl von Songs pro Playlist
+        /// </summary>
+        public int MaxEntries { get; set; } = 0;
         /// <summary>
         /// Alle Bedingungsgruppen
         /// </summary>

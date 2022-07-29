@@ -108,6 +108,7 @@ namespace PlaylistGenerator
                             plnames[playlistcounter].Add(file);
                         }
                         playlistcounter++;
+
                     }//Ende der GetPlaylists schleife
 
 
@@ -155,24 +156,25 @@ namespace PlaylistGenerator
                         }
                         bw.ReportProgress(reportvalue, "Wiedergabeliste " + Playlists.GetPlaylistNames[i] + " wird geschrieben.");
                     }
-
-                    if (plnames[i].Count > 0)
+                    var currentpl = plnames[i];
+                    var maxentries = Playlists.GetPlaylists[i].MaxEntries;
+                    if (currentpl.Count > 0)
                     {
                         PlaylistSortOrder sortorder = Playlists.GetPlaylists[i].Sort;
                         if (sortorder != PlaylistSortOrder.NotSet)
                         {
                             if (sortorder == PlaylistSortOrder.Title)
                             {
-                                plnames[i] = plnames[i].OrderBy(x => x.Titel).ToList();
+                                currentpl = currentpl.OrderBy(x => x.Titel).ToList();
                             }
                             if (sortorder == PlaylistSortOrder.Artist)
                             {
-                                plnames[i] = plnames[i].OrderBy(x => x.Artist).ToList();
+                                currentpl = currentpl.OrderBy(x => x.Artist).ToList();
                             }
                             if (sortorder == PlaylistSortOrder.Random)
                             {
                                 Random rng = new();
-                                List<MP3File.MP3File> list = plnames[i];
+                                List<MP3File.MP3File> list = currentpl;
                                 int n = list.Count;
                                 while (n > 1)
                                 {
@@ -186,12 +188,16 @@ namespace PlaylistGenerator
                             }
                             if (sortorder == PlaylistSortOrder.Rating)
                             {
-                                plnames[i] = plnames[i].OrderBy(x => x.Bewertung).ToList();
+                                currentpl = currentpl.OrderBy(x => x.Bewertung).ToList();
                             }
                             if (sortorder == PlaylistSortOrder.RatingMine)
                             {
-                                plnames[i] = plnames[i].OrderBy(x => x.BewertungMine).ToList();
+                                currentpl = currentpl.OrderBy(x => x.BewertungMine).ToList();
                             }
+                        }
+                        if (currentpl.Count > maxentries && maxentries > 0)
+                        {
+                            currentpl.RemoveRange(maxentries, currentpl.Count-maxentries);
                         }
 
                         if (!MP3ReadWrite.WritePlaylist(plnames[i], Playlists.GetPlaylistNames[i], savepath, ChangeMusicPath))

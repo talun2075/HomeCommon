@@ -30,7 +30,7 @@ namespace PlaylistWPF
             GenerateFieldList();
             Functions.ReadSettingsXML();
             //Autoload der Playlist
-            if(Functions.PlaylistAutoLoad && File.Exists(Functions.PlaylistXML))
+            if (Functions.PlaylistAutoLoad && File.Exists(Functions.PlaylistXML))
             {
                 try
                 {
@@ -136,7 +136,7 @@ namespace PlaylistWPF
         private void AddField()
         {
             var cg = tp.cbFieldsToChoose.Text;
-            ConditionObject k = new() { Feld = cg};
+            ConditionObject k = new() { Feld = cg };
             Playlists.GetPlaylists[lbPlaylist.SelectedIndex].PlaylistConditionGroups[lbConditionList.SelectedIndex].Add(k);
             Functions.PlaylistChanged = true;
             lbFelder.ItemsSource = null;
@@ -621,7 +621,7 @@ namespace PlaylistWPF
         /// <param name="e"></param>
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
-            tpadd = new TextPopup {Title = "Wiedergabeliste Anlegen", Owner=this};
+            tpadd = new TextPopup { Title = "Wiedergabeliste Anlegen", Owner = this };
             tpadd.btnOk.Click += AddPlaylist;
             tpadd.tbflex.KeyDown += AddPlaylistTextBox_PreviewKeyDown;
             tpadd.Show();
@@ -804,6 +804,7 @@ namespace PlaylistWPF
                 btndelete.IsEnabled = true;
                 btnEditPlaylist.IsEnabled = true;
                 cbPLSortOrder.SelectedValue = GetSortOrderString(b.Sort);
+                tbMaxEntries.Text = b.MaxEntries.ToString();
             }
             else
             {
@@ -962,7 +963,7 @@ namespace PlaylistWPF
             if (cbPLSortOrder.SelectedValue != null)
             {
                 Playlists.GetPlaylists[lbPlaylist.SelectedIndex].Sort = GetSortOrderPlaylistSortOrder(e.AddedItems[0].ToString());
-                    //cbPLSortOrder.SelectedValue.ToString();
+                //cbPLSortOrder.SelectedValue.ToString();
             }
         }
         /// <summary>
@@ -1141,7 +1142,7 @@ namespace PlaylistWPF
         {
             if (Functions.PlaylistChanged)
             {
-                MessageBoxResult dlg =  MessageBox.Show("Achtung die Playlist wurde geändert! Soll diese jetzt gespeichert werden?", "Achtung!", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                MessageBoxResult dlg = MessageBox.Show("Achtung die Playlist wurde geändert! Soll diese jetzt gespeichert werden?", "Achtung!", MessageBoxButton.YesNo, MessageBoxImage.Warning);
                 if (dlg == MessageBoxResult.Yes)
                 {
                     SaveXML();
@@ -1149,8 +1150,16 @@ namespace PlaylistWPF
             }
         }
 
-
-
-
+        private void tbMaxEntries_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (int.TryParse(tbMaxEntries.Text, out int mxen))
+            {
+                Playlists.GetPlaylists[lbPlaylist.SelectedIndex].MaxEntries = mxen;
+            }
+            else
+            {
+                MessageBox.Show("Achtung hier sind nur Zahlen erlaubt.","Fehler",MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
     }
 }

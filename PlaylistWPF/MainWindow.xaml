@@ -26,14 +26,16 @@
             <Label Content="Bedingungsgruppen"  Height="24" HorizontalAlignment="Left" Margin="0,12,0,0" Name="label5" VerticalAlignment="Top" Foreground="White" />
             <Button Content="Ändern" Height="24" HorizontalAlignment="Left" Margin="100,330,0,0" Name="btnEditConditionGroup" VerticalAlignment="Top" Width="58" Click="btnEditConditionGroup_Click" IsEnabled="False" />
         </Grid>
-        <Grid Name="gridlbfelder" Margin="356,0,281,12" Visibility="Hidden" Grid.Column="3">
+        <Grid Name="gridlbfelder" Margin="356,0,281,12" Visibility="Visible" Grid.Column="3">
             <ListBox Style="{StaticResource myListboxStyle}" Height="228" HorizontalAlignment="Left" Name="lbFelder" VerticalAlignment="Top" Width="209" SelectionChanged="lbFelder_SelectionChanged" Margin="0,98,0,0" />
             <Button Content="Hinzufügen" Height="24" HorizontalAlignment="Left" Margin="78,332,0,0" Name="btnAddField" VerticalAlignment="Top" Width="79" IsEnabled="False" Click="btnAddField_Click" />
             <Button Content="Löschen" Height="23" HorizontalAlignment="Right" Margin="0,332,0,0" Name="btnDeleteField" VerticalAlignment="Top" Width="48" IsEnabled="False" Click="btnDeleteField_Click" />
             <ComboBox Height="20" HorizontalAlignment="Left" Margin="144,77,0,0" Name="cbConditionGroupOperator" VerticalAlignment="Top" Width="63" SelectionChanged="cbConditionGroupOperator_SelectionChanged" />
             <Label Content="Feld Operatoren:" Height="28" HorizontalAlignment="Left" Name="label2" VerticalAlignment="Top" Foreground="White" Margin="0,71,0,0" />
+            <Label Content="Maximale Einträge pro:" Height="28" HorizontalAlignment="Left" Name="label3" VerticalAlignment="Top" Foreground="White" Margin="0,45,0,0" />
             <Label Content="Wiedergabesortierung: " Height="28" HorizontalAlignment="Left" Margin="0,12,0,0" Name="label6" VerticalAlignment="Top" Foreground="White" />
             <ComboBox Height="20" HorizontalAlignment="Left" Margin="144,17,0,0" Name="cbPLSortOrder" VerticalAlignment="Top" Width="63" SelectionChanged="cbPLSortOrder_SelectionChanged"/>
+            <TextBox HorizontalAlignment="Left" Name="tbMaxEntries" VerticalAlignment="Top" Width="63" TextChanged="tbMaxEntries_TextChanged" Margin="144,50,0,0"/>
         </Grid>
         <Grid Name="gridStringIntFelder" Margin="574,98,5,41" Visibility="Hidden" Grid.Column="3">
             <Label Content="Wert:" Height="28" HorizontalAlignment="Left" Margin="6,6,0,0" Name="lboperator" VerticalAlignment="Top" Foreground="White" />
