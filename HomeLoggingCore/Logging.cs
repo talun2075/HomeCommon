@@ -118,7 +118,7 @@ namespace HomeLogging
                 if (!string.IsNullOrEmpty(lwc.ErrorFileName))
                 {
                     var logerrors = new FileTarget("logfileerror" + lwc.ConfigName) { FileName = logpath + lwc.ErrorFileName, Name = lwc.ConfigName };
-                    logerrors.Layout = @"${date:format=yyyy-MM-dd HH\:mm\:ss} | ${level} | ${message} | Exception: ${exception} | ${newline} Stack: ${exception:format=tostring} | ${newline} File: ${callsite:fileName}:${callsite-linenumber}";
+                    logerrors.Layout = @"${date:format=yyyy-MM-dd HH\:mm\:ss} | ${level} | ${message} | Exception: ${exception} | ${newline} Stack: ${exception:format=tostring}";
                     config.AddTarget("logfileerror" + lwc.ConfigName, logerrors);
                     config.LoggingRules.Add(new LoggingRule(lwc.ConfigName, LogLevel.Error, LogLevel.Fatal, logerrors));
                 }
