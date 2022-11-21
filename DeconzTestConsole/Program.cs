@@ -17,11 +17,11 @@ namespace DeconzTestConsole
         private static async void test()
         {
             var deconzClient = new DeConzClient("deconz.tami", 888, "463608DCF3");
-            //deconzClient.SensorChanged += DeconzClient_SensorChanged;
-            //await deconzClient.ListenToEvents("deconz.tami", 999);
-            var workroom = await deconzClient.GetGroupAsync("33");
-            var lc = new LightCommand();
-            await deconzClient.SendCommandAsync(lc.TurnOn(), workroom.Lights);
+            var light = await deconzClient.GetLightAsync("31");
+            var lighthex = light.HexColor;
+
+
+            
         }
 
         private static void DeconzClient_SensorChanged(object sender, InnerCore.Api.DeConz.Models.WebSocket.SensorChangedEvent e)

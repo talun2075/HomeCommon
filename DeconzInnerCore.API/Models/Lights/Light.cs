@@ -1,4 +1,6 @@
-﻿using System.Runtime.Serialization;
+﻿using InnerCore.Api.DeConz.ColorConverters;
+using InnerCore.Api.DeConz.ColorConverters.HSB.Extensions;
+using System.Runtime.Serialization;
 
 namespace InnerCore.Api.DeConz.Models.Lights
 {
@@ -8,8 +10,22 @@ namespace InnerCore.Api.DeConz.Models.Lights
         [DataMember(Name = "id")]
         public string Id { get; set; }
 
+        [DataMember(Name = "hascolor")]
+        public bool HasColor { get; set; }
+
+        [DataMember(Name = "colorcapabilities")]
+        public int ColorCapabilities { get; set; }
+
+        [DataMember(Name = "ctmax")]
+        public int CtMax { get; set; }
+
+        [DataMember(Name = "ctmin")]
+        public int CtMin { get; set; }
+
         [DataMember(Name = "state")]
         public State State { get; set; }
+
+        public string HexColor => State.ToHex();
 
         [DataMember(Name = "type")]
         public string Type { get; set; }

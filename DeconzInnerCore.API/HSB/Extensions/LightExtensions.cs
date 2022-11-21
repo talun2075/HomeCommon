@@ -6,7 +6,11 @@ namespace InnerCore.Api.DeConz.ColorConverters.HSB.Extensions
     {
         public static string ToHex(this Light light)
         {
-            return light.State.ToRgb().ToHex();
+            return light.State.ToHex();
+        }
+        public static RGBColor ToRGB(this Light light)
+        {
+            return light.State.ToRgb();
         }
     }
 }

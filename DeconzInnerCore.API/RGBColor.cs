@@ -92,7 +92,7 @@ namespace InnerCore.Api.DeConz.ColorConverters
             int green = (int)(G * 255.99);
             int blue = (int)(B * 255.99);
 
-            return string.Format("{0}{1}{2}", red.ToString("X2"), green.ToString("X2"), blue.ToString("X2"));
+            return string.Format("#{0}{1}{2}", red.ToString("X2"), green.ToString("X2"), blue.ToString("X2"));
         }
 
         public bool Equals(RGBColor other)
