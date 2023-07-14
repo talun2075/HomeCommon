@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
+using DeconzInnerCore.API.Models.Sensors.Zigbee;
 using InnerCore.Api.DeConz.Converters;
 using InnerCore.Api.DeConz.Interfaces;
 using InnerCore.Api.DeConz.Models.Sensors.CLIP;
@@ -34,7 +35,7 @@ namespace InnerCore.Api.DeConz.Models.Sensors
         ZHAVibrationState,
         ZHAConsumptionState,
         ZHAPowerState,
-        ZGPSwitchState
+        ZGPSwitchState, ZHARotary
     {
         [JsonProperty("buttonevent")]
         public int? ButtonEvent { get; set; }
@@ -129,5 +130,8 @@ namespace InnerCore.Api.DeConz.Models.Sensors
         [JsonProperty("sunset")]
         [JsonConverter(typeof(NullableDateTimeConverter))]
         public DateTime? Sunset { get; set; }
+        public int? Rotaryevent { get; set; }
+        public int? Expectedrotation { get; set; }
+        public int? Expectedeventduration { get; set; }
     }
 }
