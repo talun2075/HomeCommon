@@ -52,7 +52,8 @@ namespace EvtSource
         {
             if (_IsDisposed)
             {
-                throw new ObjectDisposedException("EventSourceReader");
+                return null;
+                //throw new ObjectDisposedException("EventSourceReader");
             }
             lock (StartLock)
             {

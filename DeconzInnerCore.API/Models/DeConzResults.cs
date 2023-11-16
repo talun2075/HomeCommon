@@ -10,7 +10,7 @@ namespace InnerCore.Api.DeConz.Models
     {
         public bool HasErrors()
         {
-            return this.Any(x => x.Error != null);
+            return this.Any(x => x!=null && x.Error != null);
         }
 
         public IEnumerable<DefaultDeConzResult> Errors

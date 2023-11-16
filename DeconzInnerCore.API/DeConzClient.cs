@@ -1,9 +1,9 @@
 ﻿using InnerCore.Api.DeConz.Models;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace InnerCore.Api.DeConz
@@ -150,7 +150,7 @@ namespace InnerCore.Api.DeConz
         {
             try
             {
-                T objResult = JsonConvert.DeserializeObject<T>(json);
+                T objResult = JsonSerializer.Deserialize<T>(json);
 
                 return objResult;
             }
@@ -177,12 +177,12 @@ namespace InnerCore.Api.DeConz
 
             try
             {
-                result = JsonConvert.DeserializeObject<DeConzResults>(json);
+                result = JsonSerializer.Deserialize<DeConzResults>(json);
             }
 
-            catch (JsonSerializationException)
+            catch (JsonException)
             {
-                //Ignore JsonSerializationException
+                //Ignore JsonException
             }
 
             return result;
@@ -198,11 +198,11 @@ namespace InnerCore.Api.DeConz
 
             try
             {
-                result = JsonConvert.DeserializeObject<List<T>>(json);
+                result = JsonSerializer.Deserialize<List<T>>(json);
             }
-            catch (JsonSerializationException)
+            catch (JsonException)
             {
-                //Ignore JsonSerializationException
+                //Ignore JsonException
             }
 
             return result;

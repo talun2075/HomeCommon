@@ -7,6 +7,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DeconzInnerCore.API\DeconzInnerCore.API.csproj" />
+    <ProjectReference Include="..\ExternalDevices\ExternalDevices.csproj" />
   </ItemGroup>
 
 </Project>

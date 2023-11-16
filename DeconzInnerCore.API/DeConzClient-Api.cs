@@ -1,8 +1,8 @@
 ﻿using InnerCore.Api.DeConz.Exceptions;
 using InnerCore.Api.DeConz.Models;
-using Newtonsoft.Json.Linq;
 using System;
 using System.Net.Http;
+using System.Text.Json.Nodes;
 using System.Threading.Tasks;
 
 namespace InnerCore.Api.DeConz
@@ -38,18 +38,18 @@ namespace InnerCore.Api.DeConz
         /// <returns>Secret key for the app to communicate with the bridge.</returns>
         public static async Task<string> RegisterAsync(string ip, int port, string applicationName)
         {
-            JObject obj = new();
+            JsonObject obj = new();
             obj["devicetype"] = applicationName;
 
             HttpClient client = await GetHttpClient().ConfigureAwait(false);
             var response = await client.PostAsync(new Uri(string.Format("http://{0}:{1}/api", ip, port)), new JsonContent(obj.ToString())).ConfigureAwait(false);
             var stringResponse = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
 
-            JObject result;
+            JsonObject result = new();
             try
             {
-                JArray jresponse = JArray.Parse(stringResponse);
-                result = (JObject)jresponse.First;
+                var jresponse = JsonObject.Parse(stringResponse);
+                result = (JsonObject)jresponse[0];
             }
             catch
             {
@@ -57,15 +57,15 @@ namespace InnerCore.Api.DeConz
                 throw new Exception(stringResponse);
             }
 
-            if (result.TryGetValue("error", out JToken error))
+            if (result.TryGetPropertyValue("error", out JsonNode error))
             {
-                if (error["type"].Value<int>() == 101) // link button not pressed
+                if ((int)error["type"] == 101) // link button not pressed
                     throw new LinkButtonNotPressedException("Link button not pressed");
                 else
-                    throw new Exception(error["description"].Value<string>());
+                    throw new Exception((string)error["description"]);
             }
 
-            return result["success"]["username"].Value<string>();
+            return (string)result["success"]["username"];
         }
 
         public async Task<bool> CheckConnection()

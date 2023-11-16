@@ -124,96 +124,9 @@ namespace InnerCore.Api.DeConz
 
         }
 
-        /// <summary>
-        /// UpdateSceneAsync
-        /// </summary>
-        /// <param name="id"></param>
-        /// <param name="name"></param>
-        /// <param name="lights"></param>
-        /// <param name="storeLightState">If set, the lightstates of the lights in the scene will be overwritten by the current state of the lights. Can also be used in combination with transitiontime to update the transition time of a scene.</param>
-        /// <param name="transitionTime">Can be used in combination with storeLightState</param>
-        /// <returns></returns>
-        [ObsoleteAttribute("This Method is obsolete.", true)]
-        public async Task<DeConzResults> UpdateSceneAsync(string id, string name, IEnumerable<string> lights, bool? storeLightState = null, TimeSpan? transitionTime = null)
-        {
-            CheckInitialized();
+        
 
-            if (id == null)
-                throw new ArgumentNullException(nameof(id));
-            if (id.Trim() == String.Empty)
-                throw new ArgumentException("id must not be empty", nameof(id));
-            if (lights == null)
-                throw new ArgumentNullException(nameof(lights));
-
-            JObject jsonObj = new();
-            jsonObj.Add("lights", JToken.FromObject(lights));
-
-            if (storeLightState.HasValue)
-            {
-                jsonObj.Add("storelightstate", storeLightState.Value);
-
-                //Transitiontime can only be used in combination with storeLightState
-                if (transitionTime.HasValue)
-                {
-                    jsonObj.Add("transitiontime", (uint)transitionTime.Value.TotalSeconds * 10);
-                }
-            }
-
-            if (!string.IsNullOrEmpty(name))
-                jsonObj.Add("name", name);
-
-
-            string jsonString = JsonConvert.SerializeObject(jsonObj, new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore });
-
-            HttpClient client = await GetHttpClient().ConfigureAwait(false);
-            var response = await client.PutAsync(new Uri(String.Format("{0}scenes/{1}", ApiBase, id)), new JsonContent(jsonString)).ConfigureAwait(false);
-
-            var jsonResult = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
-
-            return DeserializeDefaultDeConzResult(jsonResult);
-
-        }
-
-        /// <summary>
-        /// UpdateSceneAsync
-        /// </summary>
-        /// <param name="id"></param>
-        /// <param name="scene"></param>
-        /// <returns></returns>
-        [ObsoleteAttribute("This Method is obsolete.", true)]
-        public async Task<DeConzResults> UpdateSceneAsync(string id, Scene scene)
-        {
-            CheckInitialized();
-
-            if (id == null)
-                throw new ArgumentNullException(nameof(id));
-            if (id.Trim() == String.Empty)
-                throw new ArgumentException("id must not be empty", nameof(id));
-            if (scene == null)
-                throw new ArgumentNullException(nameof(scene));
-
-            //Set these fields to null
-            var sceneJson = JObject.FromObject(scene, new JsonSerializer() { NullValueHandling = NullValueHandling.Ignore });
-            sceneJson.Remove("Id");
-            sceneJson.Remove("recycle");
-            sceneJson.Remove("version");
-            sceneJson.Remove("lastupdated");
-            sceneJson.Remove("locked");
-            sceneJson.Remove("owner");
-            sceneJson.Remove("lightstates");
-
-            string jsonString = JsonConvert.SerializeObject(sceneJson, new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore });
-
-            HttpClient client = await GetHttpClient().ConfigureAwait(false);
-            var response = await client.PutAsync(new Uri(String.Format("{0}scenes/{1}", ApiBase, id)), new JsonContent(jsonString)).ConfigureAwait(false);
-
-            var jsonResult = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
-
-            return DeserializeDefaultDeConzResult(jsonResult);
-
-        }
-
-
+        
         public async Task<DeConzResults> ModifySceneAsync(string sceneId, string groupId, string lightId, LightCommand command)
         {
             CheckInitialized();
