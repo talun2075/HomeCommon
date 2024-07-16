@@ -25,8 +25,8 @@ namespace DeconzTestConsole
             Console.WriteLine("Start!");
             //await DeConzClient.RegisterAsync("deconz.tami", 888, "test");
             var deconzClient = new DeConzClient("deconz.tami", 888, "463608DCF3");
-            deconzClient.SensorChanged += DeconzClient_SensorChanged1;
-            deconzClient.ListenToEvents(link,999, new System.Threading.CancellationToken());
+            //deconzClient.SensorChanged += DeconzClient_SensorChanged1;
+            //deconzClient.ListenToEvents(link,999, new System.Threading.CancellationToken());
             //var light = await deconzClient.GetLightAsync("37");
             //var lighthex = light.HexColor;
             //var comm = new LightCommand();
@@ -40,7 +40,7 @@ namespace DeconzTestConsole
             //Console.WriteLine("ok");
             //comm.TurnOff();
             //await deconzClient.SendCommandAsync(comm, new List<string>() { "37" });
-
+            var group = await deconzClient.GetGroupAsync("4");
         }
 
         private static void DeconzClient_SensorChanged1(object sender, InnerCore.Api.DeConz.Models.WebSocket.SensorChangedEvent e)

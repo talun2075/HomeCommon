@@ -2,6 +2,7 @@
 using InnerCore.Api.DeConz.Models;
 using InnerCore.Api.DeConz.Models.Groups;
 using InnerCore.Api.DeConz.Models.Scenes;
+using InnerCore.Api.DeConz.Models.Schedule;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
@@ -153,8 +154,8 @@ namespace InnerCore.Api.DeConz
 
             HttpClient client = await GetHttpClient().ConfigureAwait(false);
             string stringResult = await client.GetStringAsync(new Uri(String.Format("{0}groups/{1}", ApiBase, id))).ConfigureAwait(false);
-
             Group group = DeserializeResult<Group>(stringResult);
+            
 
             if (string.IsNullOrEmpty(group.Id))
                 group.Id = id;

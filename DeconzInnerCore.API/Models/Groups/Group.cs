@@ -4,14 +4,17 @@ using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 
+
 namespace InnerCore.Api.DeConz.Models.Groups
 {
     [DataContract]
     public class Group
     {
+        [JsonProperty("id", NullValueHandling = NullValueHandling.Ignore)]
         [DataMember]
         public string Id { get; set; }
 
+        [JsonProperty("name", NullValueHandling = NullValueHandling.Ignore)]
         [DataMember(Name = "name")]
         public string Name { get; set; }
 
@@ -31,6 +34,7 @@ namespace InnerCore.Api.DeConz.Models.Groups
         /// <summary>
         /// The light state of one of the lamps in the group.
         /// </summary>
+        [JsonProperty("action", NullValueHandling = NullValueHandling.Ignore)]
         [DataMember(Name = "action")]
         public State Action { get; set; }
 
@@ -72,11 +76,6 @@ namespace InnerCore.Api.DeConz.Models.Groups
         [DataMember(Name = "mulitdeviceids")]
         public List<string> MulitDeviceIds { get; set; }
 
-        /// <summary>
-        /// A list of scenes of the group.
-        /// </summary>
-        //[DataMember(Name = "scenes")]
-        //public List<string> Scenes { get; set; }
 
         #endregion
     }
