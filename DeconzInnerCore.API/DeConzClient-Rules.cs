@@ -56,8 +56,7 @@ namespace InnerCore.Api.DeConz
         /// <returns><see cref="Rule"/></returns>
         public async Task<Rule> GetRuleAsync(string id)
         {
-            if (id == null)
-                throw new ArgumentNullException(nameof(id));
+            ArgumentNullException.ThrowIfNull(id);
             if (id.Trim() == String.Empty)
                 throw new ArgumentException("id can not be empty or a blank string", nameof(id));
 
@@ -85,8 +84,7 @@ namespace InnerCore.Api.DeConz
 
         public Task<string> CreateRule(Rule rule)
         {
-            if (rule == null)
-                throw new ArgumentNullException(nameof(rule));
+            ArgumentNullException.ThrowIfNull(rule);
 
             return CreateRule(rule.Name, rule.Conditions, rule.Actions);
         }
@@ -136,8 +134,7 @@ namespace InnerCore.Api.DeConz
 
         public Task<DeConzResults> UpdateRule(Rule rule)
         {
-            if (rule == null)
-                throw new ArgumentNullException(nameof(rule));
+            ArgumentNullException.ThrowIfNull(rule);
 
             return UpdateRule(rule.Id, rule.Name, rule.Conditions, rule.Actions);
         }
@@ -146,8 +143,7 @@ namespace InnerCore.Api.DeConz
         {
             CheckInitialized();
 
-            if (id == null)
-                throw new ArgumentNullException(nameof(id));
+            ArgumentNullException.ThrowIfNull(id);
             if (id.Trim() == String.Empty)
                 throw new ArgumentException("id must not be empty", nameof(id));
 

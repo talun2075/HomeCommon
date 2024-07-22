@@ -8,8 +8,7 @@ namespace InnerCore.Api.DeConz.Models.Touchlink
     {
         internal ScanResult(RawScanResult rawScanResult)
         {
-            if (rawScanResult == null)
-                throw new ArgumentNullException(nameof(rawScanResult));
+            ArgumentNullException.ThrowIfNull(rawScanResult);
 
             foreach (var discoveredDevices in rawScanResult.DiscoveredDevices)
             {

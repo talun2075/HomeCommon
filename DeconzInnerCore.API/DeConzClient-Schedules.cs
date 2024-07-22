@@ -25,7 +25,7 @@ namespace InnerCore.Api.DeConz
             HttpClient client = await GetHttpClient().ConfigureAwait(false);
             string stringResult = await client.GetStringAsync(new Uri(String.Format("{0}schedules", ApiBase))).ConfigureAwait(false);
 
-            List<Schedule> results = new();
+            List<Schedule> results = [];
 
             JToken token = JToken.Parse(stringResult);
             if (token.Type == JTokenType.Object)
@@ -53,8 +53,7 @@ namespace InnerCore.Api.DeConz
         /// <returns></returns>
         public async Task<Schedule> GetScheduleAsync(string id)
         {
-            if (id == null)
-                throw new ArgumentNullException(nameof(id));
+            ArgumentNullException.ThrowIfNull(id);
             if (id.Trim() == String.Empty)
                 throw new ArgumentException("id must not be empty", nameof(id));
 
@@ -79,8 +78,7 @@ namespace InnerCore.Api.DeConz
         /// <returns></returns>
         public async Task<string> CreateScheduleAsync(Schedule schedule)
         {
-            if (schedule == null)
-                throw new ArgumentNullException(nameof(schedule));
+            ArgumentNullException.ThrowIfNull(schedule);
 
             CheckInitialized();
 
@@ -116,12 +114,10 @@ namespace InnerCore.Api.DeConz
         /// <returns></returns>
         public async Task<DeConzResults> UpdateScheduleAsync(string id, Schedule schedule)
         {
-            if (id == null)
-                throw new ArgumentNullException(nameof(id));
+            ArgumentNullException.ThrowIfNull(id);
             if (id.Trim() == String.Empty)
                 throw new ArgumentException("id must not be empty", nameof(id));
-            if (schedule == null)
-                throw new ArgumentNullException(nameof(schedule));
+            ArgumentNullException.ThrowIfNull(schedule);
 
             CheckInitialized();
 
@@ -150,8 +146,7 @@ namespace InnerCore.Api.DeConz
         /// <returns></returns>
         public async Task<DeConzResults> DeleteScheduleAsync(string id)
         {
-            if (id == null)
-                throw new ArgumentNullException(nameof(id));
+            ArgumentNullException.ThrowIfNull(id);
             if (id.Trim() == String.Empty)
                 throw new ArgumentException("id must not be empty", nameof(id));
 

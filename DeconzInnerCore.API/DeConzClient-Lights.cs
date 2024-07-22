@@ -25,8 +25,7 @@ namespace InnerCore.Api.DeConz
         /// <exception cref="ArgumentException"><paramref name="id"/> is empty or a blank string.</exception>
         public async Task<Light> GetLightAsync(string id)
         {
-            if (id == null)
-                throw new ArgumentNullException(nameof(id));
+            ArgumentNullException.ThrowIfNull(id);
             if (id.Trim() == String.Empty)
                 throw new ArgumentException("id can not be empty or a blank string", nameof(id));
 
@@ -60,8 +59,7 @@ namespace InnerCore.Api.DeConz
         /// <returns></returns>
         public async Task<DeConzResults> SetLightNameAsync(string id, string name)
         {
-            if (id == null)
-                throw new ArgumentNullException(nameof(id));
+            ArgumentNullException.ThrowIfNull(id);
             if (id.Trim() == String.Empty)
                 throw new ArgumentException("id can not be empty or a blank string", nameof(id));
 
@@ -81,14 +79,14 @@ namespace InnerCore.Api.DeConz
         /// Asynchronously gets all lights registered with the bridge.
         /// </summary>
         /// <returns>An enumerable of <see cref="Light"/>s registered with the bridge.</returns>
-        public async Task<IEnumerable<Light>> GetLightsAsync()
+        public async Task<IEnumerable<Light>> GetLightsAsync(Boolean needConfig = false)
         {
             CheckInitialized();
 
             HttpClient client = await GetHttpClient().ConfigureAwait(false);
             string stringResult = await client.GetStringAsync(new Uri(String.Format("{0}lights", ApiBase))).ConfigureAwait(false);
 
-            List<Light> results = new();
+            List<Light> results = [];
 
             JToken token = JToken.Parse(stringResult);
             if (token.Type == JTokenType.Object)
@@ -100,6 +98,10 @@ namespace InnerCore.Api.DeConz
                 {
                     Light newLight = JsonConvert.DeserializeObject<Light>(prop.Value.ToString());
                     newLight.Id = prop.Name;
+                    if(needConfig && newLight.Config == null)
+                    {
+                        continue;
+                    }
                     results.Add(newLight);
                 }
             }
@@ -114,8 +116,7 @@ namespace InnerCore.Api.DeConz
         /// <returns></returns>
         public Task<DeConzResults> SendCommandAsync(LightCommand command, IEnumerable<string> lightList = null)
         {
-            if (command == null)
-                throw new ArgumentNullException(nameof(command));
+            ArgumentNullException.ThrowIfNull(command);
 
             string jsonCommand = JsonConvert.SerializeObject(command, new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore });
 
@@ -131,8 +132,7 @@ namespace InnerCore.Api.DeConz
         /// <returns></returns>
         public async Task<DeConzResults> SendCommandRawAsync(string command, IEnumerable<string> lightList = null)
         {
-            if (command == null)
-                throw new ArgumentNullException(nameof(command));
+            ArgumentNullException.ThrowIfNull(command);
 
             CheckInitialized();
 
@@ -143,7 +143,7 @@ namespace InnerCore.Api.DeConz
             }
             else
             {
-                DeConzResults results = new();
+                DeConzResults results = [];
 
                 await lightList.ForEachAsync(_parallelRequests, async (lightId) =>
                 {

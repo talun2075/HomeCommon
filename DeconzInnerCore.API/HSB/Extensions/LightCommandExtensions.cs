@@ -7,8 +7,7 @@ namespace InnerCore.Api.DeConz.ColorConverters.HSB.Extensions
     {
         public static LightCommand SetColor(this LightCommand lightCommand, RGBColor color, bool forColorCoordinates = false)
         {
-            if (lightCommand == null)
-                throw new ArgumentNullException(nameof(lightCommand));
+            ArgumentNullException.ThrowIfNull(lightCommand);
 
             var hsb = color.GetHSB();
             lightCommand.Brightness = (byte)hsb.Brightness;

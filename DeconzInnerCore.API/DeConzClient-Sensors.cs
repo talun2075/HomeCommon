@@ -25,7 +25,7 @@ namespace InnerCore.Api.DeConz
             HttpClient client = await GetHttpClient().ConfigureAwait(false);
             string stringResult = await client.GetStringAsync(new Uri(String.Format("{0}sensors", ApiBase))).ConfigureAwait(false);
 
-            List<Sensor> results = new();
+            List<Sensor> results = [];
 
             JToken token = JToken.Parse(stringResult);
             if (token.Type == JTokenType.Object)
@@ -56,8 +56,7 @@ namespace InnerCore.Api.DeConz
 
         public async Task<string> CreateSensorAsync(Sensor sensor)
         {
-            if (sensor == null)
-                throw new ArgumentNullException(nameof(sensor));
+            ArgumentNullException.ThrowIfNull(sensor);
 
             CheckInitialized();
 
@@ -91,8 +90,7 @@ namespace InnerCore.Api.DeConz
         /// <returns><see cref="Sensor"/></returns>
         public async Task<Sensor> GetSensorAsync(string id)
         {
-            if (id == null)
-                throw new ArgumentNullException(nameof(id));
+            ArgumentNullException.ThrowIfNull(id);
             if (id.Trim() == String.Empty)
                 throw new ArgumentException("id can not be empty or a blank string", nameof(id));
 
@@ -128,14 +126,13 @@ namespace InnerCore.Api.DeConz
         {
             CheckInitialized();
 
-            if (id == null)
-                throw new ArgumentNullException(nameof(id));
+            ArgumentNullException.ThrowIfNull(id);
             if (id.Trim() == String.Empty)
                 throw new ArgumentException("id must not be empty", nameof(id));
             if (string.IsNullOrEmpty(newName))
                 throw new ArgumentNullException(nameof(newName));
 
-            JObject jsonObj = new();
+            JObject jsonObj = [];
             jsonObj.Add("name", newName);
 
             string jsonString = JsonConvert.SerializeObject(jsonObj, new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore });
@@ -161,12 +158,10 @@ namespace InnerCore.Api.DeConz
         {
             CheckInitialized();
 
-            if (id == null)
-                throw new ArgumentNullException(nameof(id));
+            ArgumentNullException.ThrowIfNull(id);
             if (id.Trim() == String.Empty)
                 throw new ArgumentException("id must not be empty", nameof(id));
-            if (config == null)
-                throw new ArgumentNullException(nameof(config));
+            ArgumentNullException.ThrowIfNull(config);
 
             var updateJson = JObject.FromObject(config, new JsonSerializer() { NullValueHandling = NullValueHandling.Ignore });
 
@@ -194,12 +189,10 @@ namespace InnerCore.Api.DeConz
         {
             CheckInitialized();
 
-            if (id == null)
-                throw new ArgumentNullException(nameof(id));
+            ArgumentNullException.ThrowIfNull(id);
             if (id.Trim() == String.Empty)
                 throw new ArgumentException("id must not be empty", nameof(id));
-            if (state == null)
-                throw new ArgumentNullException(nameof(state));
+            ArgumentNullException.ThrowIfNull(state);
 
             string jsonString = JsonConvert.SerializeObject(state, new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore });
 
@@ -223,8 +216,7 @@ namespace InnerCore.Api.DeConz
         {
             CheckInitialized();
 
-            if (id == null)
-                throw new ArgumentNullException(nameof(id));
+            ArgumentNullException.ThrowIfNull(id);
             if (id.Trim() == String.Empty)
                 throw new ArgumentException("id must not be empty", nameof(id));
 

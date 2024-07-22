@@ -16,8 +16,7 @@ namespace InnerCore.Api.DeConz.Models.Lights
         /// <returns></returns>
         public static LightCommand SetColor(this LightCommand lightCommand, double x, double y)
         {
-            if (lightCommand == null)
-                throw new ArgumentNullException(nameof(lightCommand));
+            ArgumentNullException.ThrowIfNull(lightCommand);
 
             lightCommand.ColorCoordinates = new[] { x, y };
             return lightCommand;
@@ -31,8 +30,7 @@ namespace InnerCore.Api.DeConz.Models.Lights
         /// <returns></returns>
         public static LightCommand SetColor(this LightCommand lightCommand, int ct)
         {
-            if (lightCommand == null)
-                throw new ArgumentNullException(nameof(lightCommand));
+            ArgumentNullException.ThrowIfNull(lightCommand);
 
             lightCommand.ColorTemperature = ct;
             return lightCommand;
@@ -45,8 +43,7 @@ namespace InnerCore.Api.DeConz.Models.Lights
         /// <returns></returns>
         public static LightCommand TurnOn(this LightCommand lightCommand)
         {
-            if (lightCommand == null)
-                throw new ArgumentNullException(nameof(lightCommand));
+            ArgumentNullException.ThrowIfNull(lightCommand);
 
             lightCommand.On = true;
             return lightCommand;
@@ -59,8 +56,7 @@ namespace InnerCore.Api.DeConz.Models.Lights
         /// <returns></returns>
         public static LightCommand TurnOff(this LightCommand lightCommand)
         {
-            if (lightCommand == null)
-                throw new ArgumentNullException(nameof(lightCommand));
+            ArgumentNullException.ThrowIfNull(lightCommand);
 
             lightCommand.On = false;
             return lightCommand;

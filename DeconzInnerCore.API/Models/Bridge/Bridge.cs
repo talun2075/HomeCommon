@@ -15,8 +15,7 @@ namespace InnerCore.Api.DeConz.Models.Bridge
     {
         internal Bridge(BridgeState bridge)
         {
-            if (bridge == null)
-                throw new ArgumentNullException(nameof(bridge));
+            ArgumentNullException.ThrowIfNull(bridge);
 
             Config = bridge.Config;
 

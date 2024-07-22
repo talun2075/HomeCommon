@@ -1,4 +1,5 @@
-﻿using InnerCore.Api.DeConz.ColorConverters;
+﻿using DeconzInnerCore.API.Models.Lights;
+using InnerCore.Api.DeConz.ColorConverters;
 using InnerCore.Api.DeConz.ColorConverters.HSB.Extensions;
 using System.Runtime.Serialization;
 
@@ -49,7 +50,8 @@ namespace InnerCore.Api.DeConz.Models.Lights
         public string SoftwareVersion { get; set; }
 
         #region DeConz specific
-
+        [DataMember(Name = "config")]
+        public Config  Config { get; set; }
         /// <summary>
         /// HTTP etag which changes on any action to the group.
         /// </summary>

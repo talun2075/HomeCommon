@@ -41,6 +41,7 @@ namespace DeconzTestConsole
             //comm.TurnOff();
             //await deconzClient.SendCommandAsync(comm, new List<string>() { "37" });
             var group = await deconzClient.GetGroupAsync("4");
+            var lights = await deconzClient.GetLightsAsync();
         }
 
         private static void DeconzClient_SensorChanged1(object sender, InnerCore.Api.DeConz.Models.WebSocket.SensorChangedEvent e)

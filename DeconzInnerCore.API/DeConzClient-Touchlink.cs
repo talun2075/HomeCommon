@@ -34,8 +34,7 @@ namespace InnerCore.Api.DeConz
         /// <returns></returns>
         public async Task<DeConzResults> Identity(string id)
         {
-            if (id == null)
-                throw new ArgumentNullException(nameof(id));
+            ArgumentNullException.ThrowIfNull(id);
             if (id.Trim() == String.Empty)
                 throw new ArgumentException("id can not be empty or a blank string", nameof(id));
 
@@ -58,8 +57,7 @@ namespace InnerCore.Api.DeConz
         /// <returns></returns>
         public async Task<DeConzResults> ResetDevice(string id)
         {
-            if (id == null)
-                throw new ArgumentNullException(nameof(id));
+            ArgumentNullException.ThrowIfNull(id);
             if (id.Trim() == String.Empty)
                 throw new ArgumentException("id can not be empty or a blank string", nameof(id));
 

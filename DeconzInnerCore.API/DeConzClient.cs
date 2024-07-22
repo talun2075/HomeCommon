@@ -53,8 +53,7 @@ namespace InnerCore.Api.DeConz
         /// <param name="port"></param>
         public DeConzClient(string ip, int port = 80)
         {
-            if (ip == null)
-                throw new ArgumentNullException(nameof(ip));
+            ArgumentNullException.ThrowIfNull(ip);
 
             CheckValidIp(ip, port);
 
@@ -70,8 +69,7 @@ namespace InnerCore.Api.DeConz
         /// <param name="port"></param>
         public DeConzClient(string ip, int port, string appKey)
         {
-            if (ip == null)
-                throw new ArgumentNullException(nameof(ip));
+            ArgumentNullException.ThrowIfNull(ip);
 
             CheckValidIp(ip, port);
 
@@ -123,10 +121,7 @@ namespace InnerCore.Api.DeConz
         public static Task<HttpClient> GetHttpClient()
         {
             // return per-thread HttpClient
-            if (_httpClient == null)
-            {
-                _httpClient = new HttpClient() { Timeout = TimeSpan.FromSeconds(Constants.TIMEOUT_IN_SECONDS) };
-            }
+            _httpClient ??= new HttpClient() { Timeout = TimeSpan.FromSeconds(Constants.TIMEOUT_IN_SECONDS) };
 
             return Task.FromResult(_httpClient);
         }
@@ -192,7 +187,7 @@ namespace InnerCore.Api.DeConz
         /// Checks if the json contains errors
         /// </summary>
         /// <param name="json"></param>
-        private static IReadOnlyCollection<T> DeserializeDefaultDeConzResult<T>(string json)
+        private static List<T> DeserializeDefaultDeConzResult<T>(string json)
         {
             List<T> result = null;
 

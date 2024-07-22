@@ -131,21 +131,17 @@ namespace InnerCore.Api.DeConz
         {
             CheckInitialized();
 
-            if (sceneId == null)
-                throw new ArgumentNullException(nameof(sceneId));
+            ArgumentNullException.ThrowIfNull(sceneId);
             if (sceneId.Trim() == String.Empty)
                 throw new ArgumentException("sceneId must not be empty", nameof(sceneId));
-            if (groupId == null)
-                throw new ArgumentNullException(nameof(groupId));
+            ArgumentNullException.ThrowIfNull(groupId);
             if (groupId.Trim() == String.Empty)
                 throw new ArgumentException("groupId must not be empty", nameof(groupId));
-            if (lightId == null)
-                throw new ArgumentNullException(nameof(lightId));
+            ArgumentNullException.ThrowIfNull(lightId);
             if (lightId.Trim() == String.Empty)
                 throw new ArgumentException("lightId must not be empty", nameof(lightId));
 
-            if (command == null)
-                throw new ArgumentNullException(nameof(command));
+            ArgumentNullException.ThrowIfNull(command);
 
             string jsonCommand = JsonConvert.SerializeObject(command, new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore });
             HttpClient client = await GetHttpClient().ConfigureAwait(false);
@@ -162,8 +158,7 @@ namespace InnerCore.Api.DeConz
         /// <returns></returns>
         public Task<DeConzResults> RecallSceneAsync(string sceneId, string groupId = "0")
         {
-            if (sceneId == null)
-                throw new ArgumentNullException(nameof(sceneId));
+            ArgumentNullException.ThrowIfNull(sceneId);
 
             var groupCommand = new SceneCommand() { Scene = sceneId };
 
@@ -219,8 +214,7 @@ namespace InnerCore.Api.DeConz
         /// <returns></returns>
         private async Task<DeConzResults> SendGroupCommandForScenesAsync(SceneCommand command, string group = "0") //Group 0 contains all the lights
         {
-            if (command == null)
-                throw new ArgumentNullException(nameof(command));
+            ArgumentNullException.ThrowIfNull(command);
 
             CheckInitialized();
 

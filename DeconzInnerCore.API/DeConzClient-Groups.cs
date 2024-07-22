@@ -81,8 +81,7 @@ namespace InnerCore.Api.DeConz
         /// <returns></returns>
         public Task<DeConzResults> SendGroupCommandAsync(ICommandBody command, string group = "0")
         {
-            if (command == null)
-                throw new ArgumentNullException(nameof(command));
+            ArgumentNullException.ThrowIfNull(command);
 
             string jsonCommand = JsonConvert.SerializeObject(command, new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore });
 
@@ -97,8 +96,7 @@ namespace InnerCore.Api.DeConz
         /// <returns></returns>
         private async Task<DeConzResults> SendGroupCommandAsync(string command, string group = "0") //Group 0 contains all the lights
         {
-            if (command == null)
-                throw new ArgumentNullException(nameof(command));
+            ArgumentNullException.ThrowIfNull(command);
 
             CheckInitialized();
 
@@ -172,8 +170,7 @@ namespace InnerCore.Api.DeConz
         /// <returns></returns>
         public async Task<DeConzResults> UpdateGroupAsync(string id, IEnumerable<string> lights, string name = null, bool? hidden = null, IEnumerable<string> lightSequence = null, IEnumerable<string> mulitDeviceIds = null)
         {
-            if (id == null)
-                throw new ArgumentNullException(nameof(id));
+            ArgumentNullException.ThrowIfNull(id);
             if (id.Trim() == String.Empty)
                 throw new ArgumentException("id must not be empty", nameof(id));
 
