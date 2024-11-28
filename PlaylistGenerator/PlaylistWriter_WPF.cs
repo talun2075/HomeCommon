@@ -66,7 +66,14 @@ namespace PlaylistGenerator
                             var tempfile = TagLib.File.Create(path);
                             var img = tempfile.Tag.Pictures[0].Data.Data;
                             var imgname = tempfile.Tag.Pictures[0].Data.Checksum;
-                            var pathwithfile = picPath + imgname + ".png";
+
+                            var extension = ".png";
+                            if(tempfile.Tag.Pictures[0].MimeType.Contains("jpeg"))
+                            {
+                                extension = ".jpg";
+                            }
+
+                            var pathwithfile = picPath + imgname + extension;
                             if (!File.Exists(pathwithfile))
                                 File.WriteAllBytes(pathwithfile, img);
                         }

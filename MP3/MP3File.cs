@@ -45,6 +45,8 @@ namespace MP3File
     /// </summary>
     public static class MP3ReadWrite
     {
+        public static Exception LetzerFehler = new Exception("leer");
+        
         /// <summary>
         /// Aktuell nicht zu verarbeitende Songs
         /// Meistens weil die gerade abgespielt werden.
@@ -337,12 +339,13 @@ namespace MP3File
                  */
                 return true;
             }
-            catch
+            catch(Exception ex)
             {
                 if (!String.IsNullOrEmpty(orgrating))
                 {
                     song.Bewertung = orgrating; //OriginaleBewertung wieder herstellen.
                 }
+                LetzerFehler = ex;
                 return false;
             }
         }
