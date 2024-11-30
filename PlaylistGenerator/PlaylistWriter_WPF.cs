@@ -4,6 +4,7 @@ using System.Linq;
 using System.ComponentModel;
 using MP3File;
 using System.IO;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace PlaylistGenerator
 {
@@ -68,7 +69,7 @@ namespace PlaylistGenerator
                             var imgname = tempfile.Tag.Pictures[0].Data.Checksum;
 
                             var extension = ".png";
-                            if(tempfile.Tag.Pictures[0].MimeType.Contains("jpeg"))
+                            if (tempfile.Tag.Pictures[0].MimeType.Contains("jpeg") || tempfile.Tag.Pictures[0].MimeType.Contains("jpg"))
                             {
                                 extension = ".jpg";
                             }

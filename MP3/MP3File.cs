@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Text.RegularExpressions;
 
 namespace MP3File
@@ -18,8 +19,14 @@ namespace MP3File
         public String Jahr { get; set; } = String.Empty;
         public String Komponist { get; set; } = String.Empty;
         public String Bewertung { get; set; } = "0";
+
+        [JsonConverter(typeof(JsonStringEnumConverter<Enums.Gelegenheit>))]
         public Enums.Gelegenheit Gelegenheit { get; set; } = Enums.Gelegenheit.None;
+
+        [JsonConverter(typeof(JsonStringEnumConverter<Enums.Geschwindigkeit>))]
         public Enums.Geschwindigkeit Geschwindigkeit { get; set; } = Enums.Geschwindigkeit.None;
+
+        [JsonConverter(typeof(JsonStringEnumConverter<Enums.Stimmung>))]
         public Enums.Stimmung Stimmung { get; set; } = Enums.Stimmung.None;
         public Boolean Aufwecken { get; set; } = false;
         public Boolean ArtistPlaylist { get; set; } = false;
